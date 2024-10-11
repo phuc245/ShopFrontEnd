@@ -23,7 +23,10 @@ axiosClient.interceptors.response.use(
     return response;
   },
   async (error) => {
-    throw error.response.data;
+    if (error.response.status === 401) {
+      LocalUtils.removeLocalToken();
+      window.location.href = "/admin/login";
+    }
   }
 );
 

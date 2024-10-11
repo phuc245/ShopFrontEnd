@@ -7,8 +7,20 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import { Link } from "react-router-dom";
 
-function Actions() {
+interface ActionProps {
+  link_update?: string;
+  setModalDelete: any;
+  _id: string;
+  name: string;
+}
+
+function Actions({ link_update, setModalDelete, _id, name }: ActionProps) {
+  function handleDelete() {
+    setModalDelete(true, { _id, name: name });
+  }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -17,11 +29,15 @@ function Actions() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuItem>
-          <FaPencilAlt className="mr-2 h-4 w-4" />
-          <span>EDIT</span>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
+        {link_update && (
+          <Link to={link_update}>
+            <DropdownMenuItem>
+              <FaPencilAlt className="mr-2 h-4 w-4" />
+              <span>EDIT</span>
+            </DropdownMenuItem>
+          </Link>
+        )}
+        <DropdownMenuItem onClick={handleDelete}>
           <TrashIcon className="mr-2 h-4 w-4" />
           <span>DELETE</span>
         </DropdownMenuItem>

@@ -3,5 +3,7 @@ export type User = {
   email: string;
   name: string;
   status: boolean;
-  role: string;
+  role: string[];
 };
+
+export type CreateUser = Omit<User, "_id" | "role">;
