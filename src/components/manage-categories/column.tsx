@@ -5,6 +5,7 @@ import { Switch } from "../ui/switch";
 import { useUserStore } from "@/store/useUserStore";
 import { Category } from "@/types/category.type";
 import { ColumnDef } from "@tanstack/react-table";
+import { useCategoryStore } from "@/store/useCategotyStore";
 
 export const columns: ColumnDef<Category>[] = [
   {
@@ -53,7 +54,7 @@ export const columns: ColumnDef<Category>[] = [
     header: "actions",
     cell: ({ cell, row }) => {
       const { _id, name } = row.original;
-      const { setModalDelete } = useUserStore();
+      const { setModalDelete } = useCategoryStore();
 
       return <Actions setModalDelete={setModalDelete} _id={_id} name={name} />;
     },

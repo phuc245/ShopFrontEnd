@@ -17,4 +17,9 @@ export const categoriesApi = {
     const url = "/categories";
     return axiosClient.post(url, body);
   },
+
+  delete(_id: string) {
+    const url = `/categories/${_id}`;
+    return axiosClient.delete(url);
+  },
 };
