@@ -16,23 +16,36 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useCreateCategory } from "@/hooks/query-categories/useCreateCategory";
 import { useFormCreateCategory } from "@/hooks/query-categories/useFormCreateCategory";
 import { useGetAllNameCategories } from "@/hooks/query-categories/useGetAllName";
+import { useGetCategory } from "@/hooks/query-categories/useGetCategory";
+import { useUpdateCategory } from "@/hooks/query-categories/useUpdateCategory";
 import useToastMessage from "@/hooks/useToastMessage";
+import React, { useEffect } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { z } from "zod";
 
-function CreateCategoryPage() {
+function UpdateCategoryPage() {
+  const _id = useParams().id ?? "";
+
   const { form, formSchema } = useFormCreateCategory();
   const { toastLoading } = useToastMessage();
-  const { data: categories } = useGetAllNameCategories();
-  const mutation = useCreateCategory();
 
-  function handleCreateUser(data: z.infer<typeof formSchema>) {
+  const { data: categories } = useGetAllNameCategories();
+  const { data: category } = useGetCategory(_id);
+  const mutation = useUpdateCategory();
+
+  //chạy sau cùng
+  useEffect(() => {
+    form.setValue("name", category?.name ?? "");
+    form.setValue("status", category?.status ?? true);
+    form.setValue("parent_id", category?.parent_id ?? "");
+  }, [category]);
+
+  function handleUpdate(data: z.infer<typeof formSchema>) {
     toastLoading("Vui lòng đợi");
-    mutation.mutate(data);
+    mutation.mutate({ _id, body: data });
   }
 
   return (
@@ -45,7 +58,7 @@ function CreateCategoryPage() {
       </Link>
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(handleCreateUser)}
+          onSubmit={form.handleSubmit(handleUpdate)}
           className="flex flex-col gap-2 items-center"
         >
           <div className="flex flex-col gap-2 rounded-lg border p-4 ">
@@ -72,7 +85,7 @@ function CreateCategoryPage() {
                   <FormLabel>Danh Mục Cha</FormLabel>
                   <Select
                     onValueChange={field.onChange}
-                    defaultValue={field.value}
+                    value={field.value ?? ""}
                   >
                     <FormControl>
                       <SelectTrigger>
@@ -80,11 +93,13 @@ function CreateCategoryPage() {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {categories?.map((item) => (
-                        <SelectItem key={item._id} value={item._id}>
-                          {item.name}
-                        </SelectItem>
-                      ))}
+                      {categories
+                        ?.filter((item) => item._id !== _id)
+                        .map((item) => (
+                          <SelectItem key={item._id} value={item._id}>
+                            {item.name}
+                          </SelectItem>
+                        ))}
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -107,11 +122,11 @@ function CreateCategoryPage() {
               )}
             />
           </div>
-          <Button className="self-end">Tạo</Button>
+          <Button className="self-end">Lưu</Button>
         </form>
       </Form>
     </div>
   );
 }
 
-export default CreateCategoryPage;
+export default UpdateCategoryPage;

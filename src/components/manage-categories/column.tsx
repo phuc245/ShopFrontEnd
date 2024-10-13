@@ -6,6 +6,7 @@ import { useUserStore } from "@/store/useUserStore";
 import { Category } from "@/types/category.type";
 import { ColumnDef } from "@tanstack/react-table";
 import { useCategoryStore } from "@/store/useCategotyStore";
+import { useUpdateStatusCategory } from "@/hooks/query-categories/useUpdateStatusCategory";
 
 export const columns: ColumnDef<Category>[] = [
   {
@@ -39,11 +40,16 @@ export const columns: ColumnDef<Category>[] = [
     header: "status",
     cell: ({ cell, row }) => {
       const { _id, status } = row.original;
+      const mutation = useUpdateStatusCategory();
+      function handleStatus() {
+        mutation.mutate({ _id, status: !status });
+      }
       return (
         <Switch
           checkedIcon={<FaCheck />}
           unCheckedIcon={<RxCross2 />}
           checked={status}
+          onCheckedChange={handleStatus}
         />
       );
     },
@@ -56,7 +62,14 @@ export const columns: ColumnDef<Category>[] = [
       const { _id, name } = row.original;
       const { setModalDelete } = useCategoryStore();
 
-      return <Actions setModalDelete={setModalDelete} _id={_id} name={name} />;
+      return (
+        <Actions
+          link_update={`/admin/categories/${_id}`}
+          setModalDelete={setModalDelete}
+          _id={_id}
+          name={name}
+        />
+      );
     },
   },
 ];

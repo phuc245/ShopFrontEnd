@@ -22,4 +22,19 @@ export const categoriesApi = {
     const url = `/categories/${_id}`;
     return axiosClient.delete(url);
   },
+
+  updateStatus(_id: string, status: boolean) {
+    const url = `/categories/${_id}/status`;
+    return axiosClient.put(url, {}, { params: { status } });
+  },
+
+  get(_id: string) {
+    const url = `/categories/${_id}`;
+    return axiosClient.get(url);
+  },
+
+  update(_id: string, body: CreateCategory) {
+    const url = `/categories/${_id}`;
+    return axiosClient.put(url, body);
+  },
 };

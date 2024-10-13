@@ -3,13 +3,16 @@ import NotFoundPage from "@/pages/404";
 import AdminPgae from "@/pages/admin";
 import CategoriesPage from "@/pages/admin/categories";
 import CreateCategoryPage from "@/pages/admin/categories/create";
+import UpdateCategoryPage from "@/pages/admin/categories/update";
 import LoginPage from "@/pages/admin/login";
 import UsersPage from "@/pages/admin/users";
 import CreateUserPage from "@/pages/admin/users/create";
 import UpdateUserPage from "@/pages/admin/users/update";
 import HomePage from "@/pages/home";
-import ProductPage from "@/pages/products";
+import ProductPage from "@/pages/admin/products";
 import { createBrowserRouter } from "react-router-dom";
+import CreateProductPage from "@/pages/admin/products/create";
+import UpdateProductPage from "@/pages/admin/products/update";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,7 +31,7 @@ const router = createBrowserRouter([
         element: <UsersPage />,
       },
       {
-        path: "/admin/product",
+        path: "/admin/products",
         element: <ProductPage />,
       },
       {
@@ -47,13 +50,24 @@ const router = createBrowserRouter([
         path: "/admin/categories/create-category",
         element: <CreateCategoryPage />,
       },
+      {
+        path: "/admin/categories/:id",
+        element: <UpdateCategoryPage />,
+      },
+      {
+        path: "/admin/products/create-product",
+        element: <CreateProductPage />,
+      },
+      {
+        path: "/admin/products/:id",
+        element: <UpdateProductPage />,
+      },
     ],
   },
   {
     path: "/admin/login",
     element: <LoginPage />,
   },
-
   {
     path: "*",
     element: <NotFoundPage />,

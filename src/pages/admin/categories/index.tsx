@@ -38,7 +38,7 @@ function CategoriesPage() {
         open={modalDelete}
         name={name}
         _id={_id}
-        mutate={mutation.mutate}
+        mutation={mutation}
         setModalDelete={setModalDelete}
       />
     </>

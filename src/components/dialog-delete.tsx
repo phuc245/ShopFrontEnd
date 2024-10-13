@@ -9,7 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { ErrorResponse } from "@/types/error.type";
-import { UseMutateFunction } from "@tanstack/react-query";
+import { UseMutateFunction, UseMutationResult } from "@tanstack/react-query";
 import React from "react";
 
 interface DialogDeleteProps {
@@ -20,13 +20,13 @@ interface DialogDeleteProps {
   ) => void;
   name: string;
   _id: string;
-  mutate: UseMutateFunction<any, ErrorResponse, string, unknown>;
+  mutation: UseMutationResult<any, ErrorResponse, string, unknown>;
 }
 
 function DialogDelete({
   open,
   name,
-  mutate,
+  mutation,
   _id,
   setModalDelete,
 }: DialogDeleteProps) {
@@ -37,7 +37,8 @@ function DialogDelete({
           <DialogTitle>Bạn có chắc chắn muốn xoá {name} này</DialogTitle>
           <DialogFooter>
             <Button
-              onClick={() => mutate(_id)}
+              disabled={mutation.isPending}
+              onClick={() => mutation.mutate(_id)}
               size={"sm"}
               variant={"destructive"}
             >

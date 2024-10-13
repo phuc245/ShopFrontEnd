@@ -1,30 +1,29 @@
 import DialogDelete from "@/components/dialog-delete";
-import { columns } from "@/components/manage-users/columm";
+import { columns } from "@/components/manage-products/column";
 import DataTable from "@/components/table/data-table";
-import { useDeleteUser } from "@/hooks/query-users/useDeleteUser";
-import { useGetAllUser } from "@/hooks/query-users/useGetAllUsers";
+import { useDeleteProduct } from "@/hooks/query-products/useDeleteProduct";
+import { useGetAllProducts } from "@/hooks/query-products/useGetAllProducts";
 import useDebounce from "@/hooks/useDebounce";
-import { useUserStore } from "@/store/useUserStore";
+import { useProductStore } from "@/store/useProductStore";
 import React, { useState } from "react";
 
-function UsersPage() {
+function ProductsPage() {
   const [keyword, setKeyword] = useState("");
   const debounced = useDebounce(keyword, 2000);
-
-  const { modalDelete, setModalDelete, _id, name } = useUserStore();
-  const mutation = useDeleteUser();
-
-  const { data, isLoading } = useGetAllUser({
+  const { data, isLoading } = useGetAllProducts({
     page: 1,
     limit: 100,
     sort: "asc",
     keyword: debounced,
   });
 
+  const { modalDelete, setModalDelete, _id, name } = useProductStore();
+  const mutation = useDeleteProduct();
+
   return (
     <>
       <div className="flex flex-col gap-4">
-        <h1 className="text-2xl font-bold">Manager User</h1>
+        <h1 className="text-2xl font-bold">Manager Products</h1>
         {isLoading ? (
           <p>Loading...</p>
         ) : (
@@ -33,7 +32,7 @@ function UsersPage() {
             columns={columns}
             setKeyword={setKeyword}
             keyword={keyword}
-            link_create="/admin/users/create-user"
+            link_create="/admin/products/create-product"
           />
         )}
       </div>
@@ -48,4 +47,4 @@ function UsersPage() {
   );
 }
 
-export default UsersPage;
+export default ProductsPage;
