@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import useToastMessage from "../useToastMessage";
 import { useCategoryStore } from "@/store/useCategotyStore";
 import { ErrorResponse } from "@/types/error.type";
+import { categoriesApi } from "@/api/categories-api";
 
 export const useDeleteCategory = () => {
   const queryClient = useQueryClient();

@@ -1,3 +1,4 @@
+import DialogDelete from "@/components/dialog-delete";
 import { columns } from "@/components/manage-categories/column";
 import DataTable from "@/components/table/data-table";
 import { useDeleteCategory } from "@/hooks/query-categories/useDeleteCategory";
@@ -33,6 +34,13 @@ function CategoriesPage() {
           />
         )}
       </div>
+      <DialogDelete
+        open={modalDelete}
+        name={name}
+        _id={_id}
+        mutate={mutation.mutate}
+        setModalDelete={setModalDelete}
+      />
     </>
   );
 }
