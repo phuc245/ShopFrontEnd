@@ -23,14 +23,15 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { useGetAllNameCategories } from "@/hooks/query-categories/useGetAllName";
-import { useUpdateCategory } from "@/hooks/query-categories/useUpdateCategory";
-import { useAddExtraImage } from "@/hooks/query-products/useAddExtraimage";
-import { useChangeImage } from "@/hooks/query-products/useChangeimage";
 
+import { useAddExtraImage } from "@/hooks/query-products/useAddExtraimage";
+import { useChangeImage } from "@/hooks/query-products/useChangeImage";
+import { useUpdateCategory } from "@/hooks/query-categories/useUpdateCategory";
 import { useCreateProduct } from "@/hooks/query-products/useCreateProduct";
 import { useDeleteExtraImages } from "@/hooks/query-products/useDeleteExtraImages";
 import { useFormCreateProduct } from "@/hooks/query-products/useFormCreateProduct";
 import { useGetProduct } from "@/hooks/query-products/useGetProduct";
+import { useUpdateProduct } from "@/hooks/query-products/useUpdateProduct";
 import useToastMessage from "@/hooks/useToastMessage";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import React, { ChangeEvent, useEffect, useState } from "react";
@@ -83,8 +84,10 @@ function UpdateProductPage() {
   };
 
   const handleAddExtraImages = (e: ChangeEvent<HTMLInputElement>) => {
+    toastLoading("Vui lòng đợi");
     const files = e.target.files;
     files && mutationAddExtraImage.mutate({ id, data: Array.from(files) });
+    e.target.value = "";
   };
 
   return (
@@ -280,6 +283,7 @@ function UpdateProductPage() {
                 onChange={handleAddExtraImages}
                 id="hiddenFileInput"
                 type="file"
+                multiple
               />
               <ScrollArea className="h-[300px] w-full border">
                 <div className="flex flex-wrap items-center justify-between gap-2 p-2">
