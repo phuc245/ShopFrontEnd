@@ -13,10 +13,16 @@ import ProductPage from "@/pages/admin/products";
 import { createBrowserRouter } from "react-router-dom";
 import CreateProductPage from "@/pages/admin/products/create";
 import UpdateProductPage from "@/pages/admin/products/update";
+import LayoutHomePages from "@/pages/home/layout";
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <HomePage />,
+    element: <LayoutHomePages />,
+    children: [
+      {
+        path: "/",
+        element: <HomePage />,
+      },
+    ],
   },
   {
     path: "/admin",
