@@ -14,6 +14,10 @@ import { createBrowserRouter } from "react-router-dom";
 import CreateProductPage from "@/pages/admin/products/create";
 import UpdateProductPage from "@/pages/admin/products/update";
 import LayoutHomePages from "@/pages/home/layout";
+import LoginHomePage from "@/pages/home/login/login";
+import RegisterHomePage from "@/pages/home/register";
+import CustomersPage from "@/pages/admin/customer";
+import OrdersPage from "@/pages/admin/orders/orders";
 const router = createBrowserRouter([
   {
     element: <LayoutHomePages />,
@@ -23,6 +27,14 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <LoginHomePage />,
+  },
+  {
+    path: "/signup",
+    element: <RegisterHomePage />,
   },
   {
     path: "/admin",
@@ -67,6 +79,14 @@ const router = createBrowserRouter([
       {
         path: "/admin/products/:id",
         element: <UpdateProductPage />,
+      },
+      {
+        path: "/admin/customers",
+        element: <CustomersPage />,
+      },
+      {
+        path: "/admin/orders",
+        element: <OrdersPage />,
       },
     ],
   },

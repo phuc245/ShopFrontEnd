@@ -3,7 +3,8 @@ import { MdManageAccounts } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { TbCategoryFilled } from "react-icons/tb";
 import { FaSwatchbook } from "react-icons/fa";
-
+import { FcCustomerSupport } from "react-icons/fc";
+import { CiBag1 } from "react-icons/ci";
 import { link } from "fs";
 
 const menuItems = [
@@ -26,6 +27,16 @@ const menuItems = [
     title: "Products",
     icon: <FaSwatchbook className="h-5 w-5" />,
     link: "/admin/products",
+  },
+  {
+    title: "Customers",
+    icon: <FcCustomerSupport className="h-5 w-5" />,
+    link: "/admin/customers",
+  },
+  {
+    title: "Orders",
+    icon: <CiBag1 className="h-5 w-5" />,
+    link: "/admin/orders",
   },
 ];
 
