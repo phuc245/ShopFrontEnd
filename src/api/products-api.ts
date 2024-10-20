@@ -1,16 +1,15 @@
-import axiosClient from "@/api/axios-cilent";
 import { ParamPagination } from "@/types/pagination.type";
+import axiosClient from "./axios-cilent";
 import { CreateProduct, InfoProduct } from "@/types/product.type";
-import { get } from "http";
 
 export const productsApi = {
   getAll(params: ParamPagination) {
     const url = "/products";
-    return axiosClient.get(url, { params: params });
+    return axiosClient(true).get(url, { params: params });
   },
   get(_id: string) {
     const url = `/products/${_id}`;
-    return axiosClient.get(url);
+    return axiosClient(true).get(url);
   },
   create: (params: CreateProduct) => {
     const { product, main_image, extra_images } = params;
@@ -24,6 +23,7 @@ export const productsApi = {
     formData.append("sale", String(product.sale));
     formData.append("stock", String(product.stock));
     formData.append("category_id", product.category_id);
+    formData.append("author", product.author);
 
     if (main_image) {
       formData.append("main_image", main_image);
@@ -35,7 +35,7 @@ export const productsApi = {
     }
 
     const url = "/products";
-    return axiosClient.post(url, formData, {
+    return axiosClient(true).post(url, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -43,21 +43,21 @@ export const productsApi = {
   },
   delete(_id: string) {
     const url = `/products/${_id}`;
-    return axiosClient.delete(url);
+    return axiosClient(true).delete(url);
   },
   updateStatus(_id: string, status: boolean) {
     const url = `/products/${_id}/status`;
-    return axiosClient.put(url, {}, { params: { status } });
+    return axiosClient(true).put(url, {}, { params: { status } });
   },
   update(_id: string, body: InfoProduct) {
     const url = `/products/${_id}`;
-    return axiosClient.put(url, body);
+    return axiosClient(true).put(url, body);
   },
   addImage: (id: string, file: File, config: any) => {
     const formData = new FormData();
     formData.append("main_image", file);
     const url = `/products/${id}/main_image`;
-    return axiosClient.put(url, formData, {
+    return axiosClient(true).put(url, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -69,7 +69,7 @@ export const productsApi = {
       formData.append("extra_images", file);
     });
     const url = `products/${id}/add_images`;
-    return axiosClient.put(url, formData, {
+    return axiosClient(true).put(url, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -77,6 +77,10 @@ export const productsApi = {
   },
   deleteExtraImages: (id: string, files: string[]) => {
     const url = `/products/${id}/delete_images`;
-    return axiosClient.put(url, { image_ids: files });
+    return axiosClient(true).put(url, { image_ids: files });
+  },
+  getByCategory(id: string) {
+    const url = `/products/c/${id}`;
+    return axiosClient(false).get(url);
   },
 };

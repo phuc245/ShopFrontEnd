@@ -16,6 +16,7 @@ export const useDeleteCategory = () => {
     onSuccess: (response) => {
       toastSuccess("Xoá danh mục thành công");
       queryClient.refetchQueries({ queryKey: ["categories"] });
+      queryClient.refetchQueries({ queryKey: ["categories-name"] });
       setModalDelete(false);
     },
     onError: (error: ErrorResponse) => {

@@ -4,6 +4,15 @@ import axiosClient from "./axios-cilent";
 export const ordersApi = {
   getAll(params: ParamPagination) {
     const url = "/orders";
-    return axiosClient.get(url, { params });
+    return axiosClient(false).get(url, { params });
+  },
+
+  me() {
+    const url = "/orders/me";
+    return axiosClient(false).get(url);
+  },
+  getOne(_id: string) {
+    const url = `/orders/${_id}`;
+    return axiosClient(false).get(url);
   },
 };

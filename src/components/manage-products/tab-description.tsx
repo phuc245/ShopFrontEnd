@@ -27,7 +27,7 @@ function TabDescription(props: TabDescriptionProps) {
             <FormLabel>Nhập thông tin mô tả</FormLabel>
             <FormControl>
               <Textarea
-                placeholder="Tell us a little bit about yourself"
+                placeholder="Nhập thông tin mô tả"
                 className="resize-none"
                 rows={20}
                 {...field}

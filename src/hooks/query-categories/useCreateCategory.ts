@@ -17,6 +17,7 @@ export const useCreateCategory = () => {
     onSuccess: (response) => {
       toastSuccess("Tạo danh mục thành công");
       queryClient.refetchQueries({ queryKey: ["categories"] });
+      queryClient.refetchQueries({ queryKey: ["categories-name"] });
       navigate("/admin/categories");
     },
     onError: (error: ErrorResponse) => {

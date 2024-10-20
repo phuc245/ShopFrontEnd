@@ -12,6 +12,7 @@ export const useFormCreateProduct = () => {
     sale: z.number(),
     stock: z.number(),
     category_id: z.string(),
+    author: z.string(),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -25,6 +26,7 @@ export const useFormCreateProduct = () => {
       sale: 0,
       stock: 0,
       category_id: "",
+      author: "",
     },
   });
 

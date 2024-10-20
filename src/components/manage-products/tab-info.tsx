@@ -38,6 +38,19 @@ function TabInfo(props: TabInfoProps) {
           </FormItem>
         )}
       />
+      <FormField
+        control={props.form.control}
+        name="author"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Tên Tác Giả</FormLabel>
+            <FormControl>
+              <Input {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
       <div className="flex gap-2">
         <FormField
           control={props.form.control}

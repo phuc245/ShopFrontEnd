@@ -5,5 +5,5 @@ export type Register = {
   gender: string;
   address: string;
   phone_number: string;
-  status: true;
+  status: boolean;
 };

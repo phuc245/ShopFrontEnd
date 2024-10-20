@@ -72,6 +72,7 @@ function LoginPage() {
                 <FormLabel>Password</FormLabel>
                 <FormControl>
                   <Input type="text" {...field} />
+                  {/* có thể để type thành password để ẩn  */}
                 </FormControl>
               </FormItem>
             )}

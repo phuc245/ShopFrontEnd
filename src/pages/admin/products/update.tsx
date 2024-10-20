@@ -1,7 +1,4 @@
 import ImageDeleteIcon from "@/components/image-delete-icon";
-import TabDescription from "@/components/manage-products/tab-description";
-import TabImages from "@/components/manage-products/tab-images";
-import TabInfo from "@/components/manage-products/tab-info";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -26,8 +23,7 @@ import { useGetAllNameCategories } from "@/hooks/query-categories/useGetAllName"
 
 import { useAddExtraImage } from "@/hooks/query-products/useAddExtraimage";
 import { useChangeImage } from "@/hooks/query-products/useChangeImage";
-import { useUpdateCategory } from "@/hooks/query-categories/useUpdateCategory";
-import { useCreateProduct } from "@/hooks/query-products/useCreateProduct";
+
 import { useDeleteExtraImages } from "@/hooks/query-products/useDeleteExtraImages";
 import { useFormCreateProduct } from "@/hooks/query-products/useFormCreateProduct";
 import { useGetProduct } from "@/hooks/query-products/useGetProduct";
@@ -62,6 +58,7 @@ function UpdateProductPage() {
     form.setValue("stock", product?.stock ?? 0);
     form.setValue("category_id", product?.category_id ?? "");
     form.setValue("description", product?.description ?? "");
+    form.setValue("author", product?.author ?? "");
   }, [product]);
 
   const mutation = useUpdateProduct();
@@ -110,6 +107,19 @@ function UpdateProductPage() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Tên sản phẩm</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="author"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Tên Tác Giả</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>

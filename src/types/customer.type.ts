@@ -12,3 +12,8 @@ export type Customer = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type UpdateCustomer = Pick<
+  Customer,
+  "name" | "address" | "phone_number" | "gender"
+>;

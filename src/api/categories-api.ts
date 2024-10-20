@@ -5,36 +5,36 @@ import { CreateCategory } from "@/types/category.type";
 export const categoriesApi = {
   getAll(params: ParamPagination) {
     const url = "/categories";
-    return axiosClient.get(url, { params });
+    return axiosClient(true).get(url, { params });
   },
 
   GetAllName() {
     const url = "/categories/all";
-    return axiosClient.get(url);
+    return axiosClient(true).get(url);
   },
 
   create(body: CreateCategory) {
     const url = "/categories";
-    return axiosClient.post(url, body);
+    return axiosClient(true).post(url, body);
   },
 
   delete(_id: string) {
     const url = `/categories/${_id}`;
-    return axiosClient.delete(url);
+    return axiosClient(true).delete(url);
   },
 
   updateStatus(_id: string, status: boolean) {
     const url = `/categories/${_id}/status`;
-    return axiosClient.put(url, {}, { params: { status } });
+    return axiosClient(true).put(url, {}, { params: { status } });
   },
 
   get(_id: string) {
     const url = `/categories/${_id}`;
-    return axiosClient.get(url);
+    return axiosClient(true).get(url);
   },
 
   update(_id: string, body: CreateCategory) {
     const url = `/categories/${_id}`;
-    return axiosClient.put(url, body);
+    return axiosClient(true).put(url, body);
   },
 };

@@ -14,10 +14,18 @@ import { createBrowserRouter } from "react-router-dom";
 import CreateProductPage from "@/pages/admin/products/create";
 import UpdateProductPage from "@/pages/admin/products/update";
 import LayoutHomePages from "@/pages/home/layout";
-import LoginHomePage from "@/pages/home/login/login";
-import RegisterHomePage from "@/pages/home/register";
+import LoginHomePage from "@/pages/home/login";
 import CustomersPage from "@/pages/admin/customer";
 import OrdersPage from "@/pages/admin/orders/orders";
+import RegisterHomePage from "@/pages/home/register";
+import ProductsHomePage from "@/pages/home/products";
+import ProductDetailPage from "@/pages/home/products/detail";
+import CartPage from "@/pages/home/cart";
+import ForgotPasswordPage from "@/pages/home/forgot-password";
+import ResetPasswordPage from "@/pages/home/reset-password";
+import CheckoutPage from "@/pages/home/checkout";
+import ThanksPage from "@/pages/home/checkout/thanks";
+import ProfilePage from "@/pages/home/profile";
 const router = createBrowserRouter([
   {
     element: <LayoutHomePages />,
@@ -26,16 +34,50 @@ const router = createBrowserRouter([
         path: "/",
         element: <HomePage />,
       },
+      {
+        path: "/products",
+        element: <ProductsHomePage />,
+      },
+      {
+        path: "/products/:id",
+        element: <ProductDetailPage />,
+      },
+      {
+        path: "/cart",
+        element: <CartPage />,
+      },
+      {
+        path: "/place-order",
+        element: <CheckoutPage />,
+      },
+      {
+        path: "/thanks",
+        element: <ThanksPage />,
+      },
+      {
+        path: "/profile",
+        element: <ProfilePage />,
+      },
     ],
   },
+  //login,register
   {
     path: "/login",
     element: <LoginHomePage />,
   },
   {
-    path: "/signup",
+    path: "/register",
     element: <RegisterHomePage />,
   },
+  {
+    path: "/forgot-password",
+    element: <ForgotPasswordPage />,
+  },
+  {
+    path: "/reset-password",
+    element: <ResetPasswordPage />,
+  },
+  //admin
   {
     path: "/admin",
     element: (

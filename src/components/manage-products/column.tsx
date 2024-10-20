@@ -12,6 +12,7 @@ export const columns: ColumnDef<Product>[] = [
     accessorKey: "name",
     header: "Name",
   },
+
   {
     accessorKey: "image_url",
     header: "ảnh chính",
@@ -20,6 +21,10 @@ export const columns: ColumnDef<Product>[] = [
 
       return <img className="w-10 h-10 object-cover" src={image_url} alt="" />;
     },
+  },
+  {
+    accessorKey: "author",
+    header: "Tác giả",
   },
   {
     accessorKey: "status",

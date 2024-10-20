@@ -22,6 +22,7 @@ export const useUpdateCategory = () => {
     onSuccess: (data) => {
       toastSuccess("Cập nhật danh mục thành công");
       queryClient.refetchQueries({ queryKey: ["categories"] });
+      queryClient.refetchQueries({ queryKey: ["categories-name"] });
       navigate("/admin/categories");
     },
     onError: (error: ErrorResponse) => {
