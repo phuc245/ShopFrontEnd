@@ -35,4 +35,9 @@ export const customersApi = {
     const url = "/customers/me";
     return axiosClient(true).put(url, body);
   },
+
+  updateStatus(_id: string, status: boolean) {
+    const url = `/customers/${_id}/status`;
+    return axiosClient(true).put(url, {}, { params: { status } });
+  },
 };

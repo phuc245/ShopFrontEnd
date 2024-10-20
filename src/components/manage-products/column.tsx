@@ -2,6 +2,10 @@ import { useProductStore } from "@/store/useProductStore";
 import { Product } from "@/types/product.type";
 import { ColumnDef } from "@tanstack/react-table";
 import Actions from "../table/action";
+import { useUpdateStatusProduct } from "./useUpdateStatusProduct";
+import { FaCheck } from "react-icons/fa";
+import { RxCross2 } from "react-icons/rx";
+import { Switch } from "../ui/switch";
 
 export const columns: ColumnDef<Product>[] = [
   {
@@ -29,6 +33,21 @@ export const columns: ColumnDef<Product>[] = [
   {
     accessorKey: "status",
     header: "status",
+    cell: ({ cell, row }) => {
+      const { _id, status } = row.original;
+      const mutation = useUpdateStatusProduct();
+      function handleStatus() {
+        mutation.mutate({ _id, status: !status });
+      }
+      return (
+        <Switch
+          checkedIcon={<FaCheck />}
+          unCheckedIcon={<RxCross2 />}
+          checked={status}
+          onCheckedChange={handleStatus}
+        />
+      );
+    },
   },
   {
     accessorKey: "",

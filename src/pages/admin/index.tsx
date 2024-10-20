@@ -2,7 +2,7 @@ import SideBar from "@/components/admin/sidebar";
 import TopBar from "@/components/admin/topbar";
 import { Outlet } from "react-router-dom";
 
-function AdminPage() {
+function LayoutAdminPage() {
   return (
     <div className="flex">
       <SideBar />
@@ -16,4 +16,4 @@ function AdminPage() {
   );
 }
 
-export default AdminPage;
+export default LayoutAdminPage;

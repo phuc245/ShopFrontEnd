@@ -1,6 +1,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Customer } from "@/types/customer.type";
 import { Order } from "@/types/order.type";
+import { useOrderStore } from "@/store/useOrderStore";
 
 export const columns: ColumnDef<Order>[] = [
   {
@@ -10,6 +11,20 @@ export const columns: ColumnDef<Order>[] = [
   {
     accessorKey: "email",
     header: "Email",
+    cell: ({ row }) => {
+      const { setModalDetail } = useOrderStore();
+      const handleModalDetail = () => {
+        setModalDetail(true, { _id: row.original._id });
+      };
+      return (
+        <h1
+          onClick={handleModalDetail}
+          className="cursor-pointer hover:text-orange-500"
+        >
+          {row.original.email}
+        </h1>
+      );
+    },
   },
   {
     accessorKey: "address",

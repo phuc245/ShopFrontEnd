@@ -1,5 +1,10 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { Customer } from "@/types/custoner.type";
+
+import { Switch } from "../ui/switch";
+import { FaCheck } from "react-icons/fa";
+import { RxCross2 } from "react-icons/rx";
+import { useUpdateStatusCustomer } from "@/hooks/query-customer/useUpdateStatusCustomer";
+import { Customer } from "@/types/customer.type";
 
 export const columns: ColumnDef<Customer>[] = [
   {
@@ -30,5 +35,20 @@ export const columns: ColumnDef<Customer>[] = [
   {
     accessorKey: "status",
     header: "status",
+    cell: ({ cell, row }) => {
+      const { _id, status } = row.original;
+      const mutation = useUpdateStatusCustomer();
+      function handleStatus() {
+        mutation.mutate({ _id, status: !status });
+      }
+      return (
+        <Switch
+          checkedIcon={<FaCheck />}
+          unCheckedIcon={<RxCross2 />}
+          checked={status}
+          onCheckedChange={handleStatus}
+        />
+      );
+    },
   },
 ];

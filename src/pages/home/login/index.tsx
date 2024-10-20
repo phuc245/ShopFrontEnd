@@ -79,9 +79,12 @@ const LoginHomePage = () => {
             <Link to="/register" className=" text-blue-500 hover:underline">
               Đăng ký
             </Link>
-            <a href="#" className="text-blue-500 hover:underline">
+            <Link
+              to={"/forgot-password"}
+              className="text-blue-500 hover:underline"
+            >
               Quên mật khẩu?
-            </a>
+            </Link>
           </div>
         </div>
       </div>

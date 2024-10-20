@@ -1,4 +1,5 @@
 import { columns } from "@/components/manage-orders/column";
+import ModalOrderDetail from "@/components/profile/modal-order-detail";
 import DataTable from "@/components/table/data-table";
 import { useGetAllOrders } from "@/hooks/query-orders/useGetAllOrder";
 
@@ -29,6 +30,7 @@ function OrdersPage() {
           />
         )}
       </div>
+      <ModalOrderDetail />
     </>
   );
 }

@@ -1,6 +1,6 @@
 import ProtectedRoute from "@/components/protected-route";
 import NotFoundPage from "@/pages/404";
-import AdminPgae from "@/pages/admin";
+
 import CategoriesPage from "@/pages/admin/categories";
 import CreateCategoryPage from "@/pages/admin/categories/create";
 import UpdateCategoryPage from "@/pages/admin/categories/update";
@@ -26,6 +26,8 @@ import ResetPasswordPage from "@/pages/home/reset-password";
 import CheckoutPage from "@/pages/home/checkout";
 import ThanksPage from "@/pages/home/checkout/thanks";
 import ProfilePage from "@/pages/home/profile";
+import LayoutAdminPage from "@/pages/admin";
+import { DashBoardPage } from "@/pages/admin/dashboard";
 const router = createBrowserRouter([
   {
     element: <LayoutHomePages />,
@@ -79,13 +81,16 @@ const router = createBrowserRouter([
   },
   //admin
   {
-    path: "/admin",
     element: (
       <ProtectedRoute>
-        <AdminPgae />
+        <LayoutAdminPage />
       </ProtectedRoute>
     ),
     children: [
+      {
+        path: "/admin",
+        element: <DashBoardPage />,
+      },
       {
         path: "/admin/users",
         element: <UsersPage />,
