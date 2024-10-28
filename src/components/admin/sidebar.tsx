@@ -6,6 +6,7 @@ import { FaSwatchbook } from "react-icons/fa";
 import { FcCustomerSupport } from "react-icons/fc";
 import { CiBag1 } from "react-icons/ci";
 import { link } from "fs";
+import { BiLogoBlogger } from "react-icons/bi";
 
 const menuItems = [
   {
@@ -37,6 +38,11 @@ const menuItems = [
     title: "Orders",
     icon: <CiBag1 className="h-5 w-5" />,
     link: "/admin/orders",
+  },
+  {
+    title: "Blogs",
+    icon: <BiLogoBlogger className="h-5 w-5" />,
+    link: "/admin/blogs",
   },
 ];
 

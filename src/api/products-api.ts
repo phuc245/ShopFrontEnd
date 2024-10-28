@@ -79,8 +79,8 @@ export const productsApi = {
     const url = `/products/${id}/delete_images`;
     return axiosClient(true).put(url, { image_ids: files });
   },
-  getByCategory(id: string) {
+  getByCategory(id: string, keyword: string) {
     const url = `/products/c/${id}`;
-    return axiosClient(false).get(url);
+    return axiosClient(false).get(url, { params: { keyword } });
   },
 };

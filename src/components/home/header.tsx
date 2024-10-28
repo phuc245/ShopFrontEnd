@@ -45,11 +45,10 @@ const Header = () => {
             <Button variant={"ghost"}>Sản phẩm</Button>
           </Link>
 
-          <Link to={"/"}>
-            {" "}
-            <Button variant={"ghost"}>Dịch vụ</Button>
+          <Link to={"/blogs"}>
+            <Button variant={"ghost"}>Tin tức</Button>
           </Link>
-          <Link to={"/"}>
+          <Link to={"/contact"}>
             <Button variant={"ghost"}>Liên hệ</Button>
           </Link>
         </nav>
