@@ -17,7 +17,6 @@ import { IoIosInformationCircleOutline } from "react-icons/io";
 const Header = () => {
   const { data } = useGetMeCustomer();
   const navigate = useNavigate();
-
   const { toastSuccess } = useToastMessage();
 
   const handleLogout = () => {
@@ -27,35 +26,60 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-orange-600 text-white">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <div className="text-2xl font-bold">
-          <h1>Logo của bạn</h1>
+    <header className="bg-gradient-to-r from-blue-300 to-orange-200 text-white shadow-lg py-3">
+      <div className="container mx-auto px-6 flex justify-between items-center">
+        {/* Logo với link dẫn đến trang chủ */}
+        <div className="flex items-center">
+          <Link to="/">
+            <h1 className="text-3xl font-bold cursor-pointer">BOOKSTORE</h1>
+            {/* Tăng kích thước chữ */}
+          </Link>
         </div>
-        <nav className="hidden md:flex space-x-8">
-          <Link to={"/"}>
-            <Button variant={"ghost"}>Trang chủ</Button>
-          </Link>
 
+        {/* Navigation */}
+        <nav className="hidden md:flex space-x-8 flex-1 justify-center">
           <Link to={"/"}>
-            <Button variant={"ghost"}>Giới thiệu</Button>
+            <Button
+              variant="ghost"
+              className="text-black text-lg hover:text-gray-700"
+            >
+              Trang chủ
+            </Button>
           </Link>
-
           <Link to={"/products"}>
-            <Button variant={"ghost"}>Sản phẩm</Button>
+            <Button
+              variant="ghost"
+              className="text-black text-lg hover:text-gray-700"
+            >
+              Sản phẩm
+            </Button>
           </Link>
-
           <Link to={"/blogs"}>
-            <Button variant={"ghost"}>Tin tức</Button>
+            <Button
+              variant="ghost"
+              className="text-black text-lg hover:text-gray-700"
+            >
+              Tin tức
+            </Button>
           </Link>
           <Link to={"/contact"}>
-            <Button variant={"ghost"}>Liên hệ</Button>
+            <Button
+              variant="ghost"
+              className="text-black text-lg hover:text-gray-700"
+            >
+              Liên hệ
+            </Button>
           </Link>
         </nav>
-        <div className="hidden md:flex items-center space-x-4">
+
+        {/* Cart and User Section */}
+        <div className="flex items-center space-x-4">
           <Link to={"/cart"}>
-            <Button size={"icon"} className="bg-slate-700">
-              <FaCartShopping />
+            <Button
+              size="icon"
+              className="bg-black text-white h-10 w-10 rounded-full"
+            >
+              <FaCartShopping className="h-5 w-5" />
             </Button>
           </Link>
           {data ? (
@@ -63,35 +87,37 @@ const Header = () => {
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
-                  className="relative h-8 w-8 rounded-full"
+                  className="relative h-10 w-10 rounded-full p-0"
                 >
-                  <Avatar className="h-8 w-8">
+                  <Avatar className="h-10 w-10 border-2 border-white">
                     <AvatarFallback>JD</AvatarFallback>
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" forceMount>
-                {/* trang thong tin */}
+              <DropdownMenuContent align="end" forceMount className="text-lg">
                 <DropdownMenuItem onClick={() => navigate("/profile")}>
-                  <IoIosInformationCircleOutline className="mr-2 h-4 w-4" />
+                  <IoIosInformationCircleOutline className="mr-3 h-5 w-5" />
                   <span>Thông tin</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={handleLogout}>
-                  <IoLogOutOutline className="mr-2 h-4 w-4" />
+                  <IoLogOutOutline className="mr-3 h-5 w-5" />
                   <span>Log out</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <>
+            <div className="flex space-x-2">
               <Link to={"/register"}>
-                <Button>Đăng Ký</Button>
+                <Button className="bg-black text-white text-lg py-2 px-4 rounded hover:bg-gray-800">
+                  Đăng Ký
+                </Button>
               </Link>
-
               <Link to={"/login"}>
-                <Button>Đăng Nhập</Button>
+                <Button className="bg-black text-white text-lg py-2 px-4 rounded hover:bg-gray-800">
+                  Đăng Nhập
+                </Button>
               </Link>
-            </>
+            </div>
           )}
         </div>
       </div>

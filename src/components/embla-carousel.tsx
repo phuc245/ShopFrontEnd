@@ -5,12 +5,15 @@ import { Thumb } from "@/components/embla-carousel-thumbs-button";
 import { Product } from "@/types/product.type";
 
 type PropType = {
-  product: Product;
+  listImages: {
+    image_id: string;
+    image_url: string;
+  }[];
   options?: EmblaOptionsType;
 };
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { product, options } = props;
+  const { listImages, options } = props;
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [emblaMainRef, emblaMainApi] = useEmblaCarousel(options);
   const [emblaThumbsRef, emblaThumbsApi] = useEmblaCarousel({
@@ -43,7 +46,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     <div className="embla w-[400px]">
       <div className="embla__viewport" ref={emblaMainRef}>
         <div className="embla__container">
-          {product?.images?.map((item, index) => (
+          {listImages?.map((item, index) => (
             <div className="embla__slide" key={index}>
               <div className="embla__slide__number">
                 <img
@@ -56,24 +59,13 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
               </div>
             </div>
           ))}
-          <div className="embla__slide">
-            <div className="embla__slide__number">
-              <img
-                src={product?.image_url}
-                alt="Product Image"
-                width={300}
-                height={300}
-                className="h-[300px] rounded-xl"
-              />
-            </div>
-          </div>
         </div>
       </div>
 
       <div className="embla-thumbs">
         <div ref={emblaThumbsRef}>
           <div className="embla-thumbs__container justify-center">
-            {product?.images?.map((item, index) => (
+            {listImages?.map((item, index) => (
               <Thumb
                 key={index}
                 onClick={() => onThumbClick(index)}
@@ -82,15 +74,6 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                 image={item}
               />
             ))}
-            <Thumb
-              onClick={() => onThumbClick(99)}
-              selected={99 === selectedIndex}
-              index={99}
-              image={{
-                image_id: product.image_id,
-                image_url: product.image_url,
-              }}
-            />
           </div>
         </div>
       </div>

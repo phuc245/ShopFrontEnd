@@ -1,6 +1,5 @@
 import ProtectedRoute from "@/components/protected-route";
 import NotFoundPage from "@/pages/404";
-
 import CategoriesPage from "@/pages/admin/categories";
 import CreateCategoryPage from "@/pages/admin/categories/create";
 import UpdateCategoryPage from "@/pages/admin/categories/update";
@@ -34,6 +33,7 @@ import BlogsPage from "@/pages/admin/blogs";
 import CreateBlogPage from "@/pages/admin/blogs/create";
 import UpdateBlogPage from "@/pages/admin/blogs/update";
 import ContactPage from "@/pages/home/contact";
+import PromotionsPage from "@/pages/home/promotions";
 const router = createBrowserRouter([
   {
     element: <LayoutHomePages />,
@@ -164,6 +164,10 @@ const router = createBrowserRouter([
       {
         path: "/admin/blogs/:id",
         element: <UpdateBlogPage />,
+      },
+      {
+        path: "/admin/promotion",
+        element: <PromotionsPage />,
       },
     ],
   },

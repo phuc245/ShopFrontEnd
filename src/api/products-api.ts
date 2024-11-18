@@ -5,7 +5,7 @@ import { CreateProduct, InfoProduct } from "@/types/product.type";
 export const productsApi = {
   getAll(params: ParamPagination) {
     const url = "/products";
-    return axiosClient(true).get(url, { params: params });
+    return axiosClient(false).get(url, { params: params });
   },
   get(_id: string) {
     const url = `/products/${_id}`;

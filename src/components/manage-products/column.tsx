@@ -2,10 +2,10 @@ import { useProductStore } from "@/store/useProductStore";
 import { Product } from "@/types/product.type";
 import { ColumnDef } from "@tanstack/react-table";
 import Actions from "../table/action";
-import { useUpdateStatusProduct } from "./useUpdateStatusProduct";
 import { FaCheck } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import { Switch } from "../ui/switch";
+import { useUpdateStatusProduct } from "@/hooks/query-products/useUpdateStatusProduct";
 
 export const columns: ColumnDef<Product>[] = [
   {

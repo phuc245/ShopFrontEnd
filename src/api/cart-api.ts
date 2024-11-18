@@ -5,9 +5,21 @@ export const cartsApi = {
     const url = "/carts";
     return axiosClient(false).get(url);
   },
-  addCart: (product_id: string, quantity: number) => {
+
+  addCart: (
+    product_id: string,
+    quantity: number,
+    isCombo = false,
+    comboDetails = []
+  ) => {
     const url = "/carts";
-    return axiosClient(false).post(url, { product_id, quantity });
+    // Nếu sản phẩm là combo, cần gửi thêm thông tin các sản phẩm con (comboDetails)
+    return axiosClient(false).post(url, {
+      product_id,
+      quantity,
+      isCombo, // Cờ xác định sản phẩm có phải là combo không
+      comboDetails, // Thông tin sản phẩm con trong combo
+    });
   },
 
   deleteCart: (id: string) => {

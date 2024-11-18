@@ -15,7 +15,6 @@ import { useNavigate } from "react-router-dom";
 
 function TopBar() {
   const navigate = useNavigate();
-
   const { toastSuccess } = useToastMessage();
 
   const handleLogout = () => {
@@ -25,29 +24,40 @@ function TopBar() {
   };
 
   return (
-    <div className="flex items-center justify-between bg-emerald-600">
-      <h1 className="text-3xl font-bold">Admin</h1>
+    <div className="flex items-center justify-between bg-blue-600 px-6 py-4 shadow-lg">
+      {/* Tiêu đề Admin */}
+      <h1 className="text-4xl font-extrabold text-white tracking-wider">
+        Admin
+      </h1>
+
+      {/* Dropdown Menu Avatar */}
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-            <Avatar className="h-8 w-8">
-              <AvatarFallback>JD</AvatarFallback>
+          <Button variant="ghost" className="relative h-10 w-10 rounded-full">
+            <Avatar className="h-10 w-10">
+              <AvatarFallback>TP</AvatarFallback>
             </Avatar>
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-56" align="end" forceMount>
-          <DropdownMenuLabel className="font-normal">
+
+        <DropdownMenuContent
+          className="w-56 mt-2 bg-white rounded-md shadow-lg border border-gray-200"
+          align="end"
+          forceMount
+        >
+          <DropdownMenuLabel className="font-normal p-4">
             <div className="flex flex-col space-y-1">
-              <p className="text-sm font-medium leading-none">John Doe</p>
-              <p className="text-xs leading-none text-muted-foreground">
-                john.doe@example.com
-              </p>
+              <p className="text-sm font-semibold">TP</p>
+              <p className="text-xs text-gray-500">TPhuc&HPhuc@example.com</p>
             </div>
           </DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={handleLogout}>
-            <IoLogOutOutline className="mr-2 h-4 w-4" />
-            <span>Log out</span>
+          <DropdownMenuSeparator className="my-1 border-t border-gray-200" />
+          <DropdownMenuItem
+            onClick={handleLogout}
+            className="flex items-center gap-2 text-red-500 hover:bg-red-100 p-2"
+          >
+            <IoLogOutOutline className="h-4 w-4" />
+            <span>Đăng xuất</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
