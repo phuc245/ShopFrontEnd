@@ -23,6 +23,11 @@ function ProductsHomePage() {
 
   const { data: products } = useGetProductsByCategory(categoryId, debounced);
 
+  // Kiểm tra nếu có dữ liệu sản phẩm và sắp xếp chúng theo ID (ID mới nhất lên trước)
+  const sortedProducts = products?.slice().sort((a, b) => {
+    return b._id.localeCompare(a._id); // Sắp xếp ID theo thứ tự giảm dần
+  });
+
   return (
     <div className="container mx-auto flex gap-8 p-8">
       {/* Sidebar for Categories */}
@@ -89,7 +94,7 @@ function ProductsHomePage() {
 
         {/* Product grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {products?.map((product) => (
+          {sortedProducts?.map((product) => (
             <Card
               key={product._id}
               className="w-full flex flex-col bg-white shadow-lg rounded-lg hover:scale-105 transition-transform"

@@ -19,6 +19,7 @@ export type Product = {
   category_id: string;
   images: ProductImages[];
   author: string;
+  combo_id?: string;
 };
 
 export type InfoProduct = Omit<

@@ -42,6 +42,16 @@ const menuItems = [
     icon: <BiLogoBlogger className="h-6 w-6 text-blue-400" />,
     link: "/admin/blogs",
   },
+  // {
+  //   title: "Combo",
+  //   icon: <BiLogoBlogger className="h-6 w-6 text-blue-400" />,
+  //   link: "/admin/combos",
+  // },
+  {
+    title: "Reviews",
+    icon: <BiLogoBlogger className="h-6 w-6 text-blue-400" />,
+    link: "/admin/reviews",
+  },
 ];
 
 function SideBar() {

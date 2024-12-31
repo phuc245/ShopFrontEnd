@@ -33,7 +33,8 @@ import BlogsPage from "@/pages/admin/blogs";
 import CreateBlogPage from "@/pages/admin/blogs/create";
 import UpdateBlogPage from "@/pages/admin/blogs/update";
 import ContactPage from "@/pages/home/contact";
-import PromotionsPage from "@/pages/home/promotions";
+import PageAdminReview from "@/pages/admin/reviews";
+
 const router = createBrowserRouter([
   {
     element: <LayoutHomePages />,
@@ -165,9 +166,13 @@ const router = createBrowserRouter([
         path: "/admin/blogs/:id",
         element: <UpdateBlogPage />,
       },
+      // {
+      //   path: "/admin/combos",
+      //   element: <ComboPage />,
+      // },
       {
-        path: "/admin/promotion",
-        element: <PromotionsPage />,
+        path: "/admin/reviews",
+        element: <PageAdminReview />,
       },
     ],
   },

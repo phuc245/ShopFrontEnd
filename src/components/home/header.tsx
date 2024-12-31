@@ -13,6 +13,7 @@ import { IoLogOutOutline } from "react-icons/io5";
 import { FaCartShopping } from "react-icons/fa6";
 import { LocalUtils } from "@/utils/local-util";
 import { IoIosInformationCircleOutline } from "react-icons/io";
+import { AvatarImage } from "@radix-ui/react-avatar";
 
 const Header = () => {
   const { data } = useGetMeCustomer();
@@ -90,7 +91,7 @@ const Header = () => {
                   className="relative h-10 w-10 rounded-full p-0"
                 >
                   <Avatar className="h-10 w-10 border-2 border-white">
-                    <AvatarFallback>JD</AvatarFallback>
+                    <AvatarImage src={data.image_url} />
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>

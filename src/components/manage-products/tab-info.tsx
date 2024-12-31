@@ -57,7 +57,7 @@ function TabInfo(props: TabInfoProps) {
           name="cost"
           render={({ field }) => (
             <FormItem className="w-1/2">
-              <FormLabel>Giá gốc</FormLabel>
+              <FormLabel>Giá gốc(giá mua)</FormLabel>
               <FormControl>
                 <Input
                   {...field}

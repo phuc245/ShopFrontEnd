@@ -5,9 +5,14 @@ import { useQuery } from "@tanstack/react-query";
 
 export const useGetAllProducts = (params: ParamPagination) => {
   return useQuery<ResponsePagination<Product>>({
-    queryKey: ["products", params.keyword],
+    queryKey: ["products", params.page, params.limit, params.sort], // Không cần params.keyword nếu không có
     queryFn: async () => {
-      return (await productsApi.getAll(params)).data;
+      return (
+        await productsApi.getAll({
+          ...params,
+          sort: String(params.sort || ""), // Đảm bảo sort là chuỗi
+        })
+      ).data;
     },
     refetchOnMount: false,
     refetchOnWindowFocus: false,

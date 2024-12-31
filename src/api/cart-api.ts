@@ -5,25 +5,18 @@ export const cartsApi = {
     const url = "/carts";
     return axiosClient(false).get(url);
   },
-
-  addCart: (
-    product_id: string,
-    quantity: number,
-    isCombo = false,
-    comboDetails = []
-  ) => {
+  addCart: (product_id: string, quantity: number) => {
     const url = "/carts";
-    // Nếu sản phẩm là combo, cần gửi thêm thông tin các sản phẩm con (comboDetails)
-    return axiosClient(false).post(url, {
-      product_id,
-      quantity,
-      isCombo, // Cờ xác định sản phẩm có phải là combo không
-      comboDetails, // Thông tin sản phẩm con trong combo
-    });
+    return axiosClient(false).post(url, { product_id, quantity });
   },
 
   deleteCart: (id: string) => {
     const url = `/carts/product/${id}`;
     return axiosClient(false).delete(url);
+  },
+
+  addCombotoCarts: (items: { product_id: string; quantity: number }[]) => {
+    const url = "/carts/multiple"; // Đường dẫn API
+    return axiosClient(false).post(url, { cartItems: items }); // Sửa "items" thành "cartItems"
   },
 };

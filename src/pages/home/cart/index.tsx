@@ -3,8 +3,6 @@ import { useAddCart } from "@/hooks/query-cart/useAddCart";
 import { useDeleteProductCart } from "@/hooks/query-cart/useDeleteProductCart";
 import { useGetCart } from "@/hooks/query-cart/useGetCart";
 import { calSale, totalItems } from "@/utils/commons";
-
-import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function CartPage() {

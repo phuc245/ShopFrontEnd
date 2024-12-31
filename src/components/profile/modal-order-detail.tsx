@@ -34,7 +34,7 @@ function ModalOrderDetail() {
                 </h1>
               </div>
               <div className="ml-auto ">
-                Tổng tiền:{" "}
+                Tổng tiề:{" "}
                 {formatPrice(
                   calSale(item.product_id.price, item.product_id.sale) *
                     item.quantity

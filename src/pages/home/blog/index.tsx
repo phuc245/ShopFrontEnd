@@ -9,6 +9,13 @@ function BlogHomePage() {
     sort: "asc",
     keyword: "",
   });
+
+  // Function to truncate the content to a specified length
+  const truncateText = (text, length) => {
+    if (!text) return "";
+    return text.length > length ? text.substring(0, length) + "..." : text;
+  };
+
   return (
     <div className="p-4 w-full">
       <h1 className="text-3xl font-bold">Xu hướng sản phẩm</h1>
@@ -20,7 +27,8 @@ function BlogHomePage() {
                 className="object-cover h-[300px] rounded-lg"
                 src={blog.image_url}
                 width={300}
-              ></img>
+                alt={blog.title}
+              />
             </Link>
             <div className="flex flex-col gap-2 ">
               <Link to={`/blogs/${blog._id}`}>
@@ -28,7 +36,12 @@ function BlogHomePage() {
                   {blog.title}
                 </h1>
               </Link>
-              <div dangerouslySetInnerHTML={{ __html: blog.content }} />
+              {/* Truncate the blog content here */}
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: truncateText(blog.content, 150), // Truncate to 150 characters
+                }}
+              />
               <div className="flex gap-2 items-center">
                 <p className="text-sm">Bởi: {blog.created_by}</p>
                 <p>{new Date(blog.created_at).toLocaleDateString()}</p>

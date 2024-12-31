@@ -1,4 +1,4 @@
-import { Cart } from "@/types/Cart.Type";
+import { Cart } from "@/types/cart.Type";
 
 //fomart giá tiền VND
 export const formatPrice = (price: number) => {
